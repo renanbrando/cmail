@@ -7,7 +7,13 @@ import { Component } from "@angular/core";
 })
 
 export class HeaderComponent {
+    isMenuOpen: Boolean
+
     constructor (){
-        
+        this.isMenuOpen = false
+    }
+
+    toggleMenu () {
+        this.isMenuOpen = !this.isMenuOpen
     }
 }
