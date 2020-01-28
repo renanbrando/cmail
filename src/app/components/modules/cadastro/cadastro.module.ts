@@ -12,9 +12,7 @@ import { CadastroRoutingModule } from './cadastro-routing.module';
 
 @NgModule({
   declarations: [
-    CadastroComponent,
-    FormGroupComponent,
-    FormFieldDirective
+    CadastroComponent
   ],
   imports: [
     CommonModule,
