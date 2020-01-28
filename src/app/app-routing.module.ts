@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
 
 const rotas: Routes = [
   {
@@ -15,12 +16,13 @@ const rotas: Routes = [
   },
   {
     path: 'inbox',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./components/modules/caixa-de-entrada/caixa-de-entrada.module')
       .then(m => m.CaixaDeEntradaModule)
   },
   {
     path: '',
-    redirectTo: 'inbox',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -39,6 +41,9 @@ const rotas: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    AuthGuard
   ]
 })
 export class AppRoutingModule { }

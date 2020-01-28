@@ -3,6 +3,7 @@ import { Login } from 'src/app/models/login';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   login: Login
   mensagemErro: ''
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router) {
     this.login = new Login({ email: '', password: ''})
    }
 
@@ -22,12 +23,9 @@ export class LoginComponent implements OnInit {
 
   handleLogin(formLogin: NgForm) {
     if (formLogin.valid) {
-      this.httpClient
-        .post('http://localhost:3200/login', this.login)
+      this.loginService.login(this.login)
         .subscribe(
-          (response: any) => {
-            console.log(response);
-            localStorage.setItem('token', response.token)
+          () => {
             this.router.navigate(['/inbox'])
             console.log('deu bom');
           },

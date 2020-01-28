@@ -5,6 +5,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { SharedModule } from '../../shared.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginService } from 'src/app/services/login.service';
 
 
 
@@ -18,6 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule,
     SharedModule
+  ],
+  providers: [
+    LoginService
   ]
 })
 export class LoginModule { }
