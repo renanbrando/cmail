@@ -1,8 +1,9 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient, HttpResponseBase } from '@angular/common/http';
+import { HttpClient, HttpResponseBase, HttpErrorResponse,  } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { User } from 'src/app/models/user'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -19,8 +20,12 @@ export class CadastroComponent implements OnInit {
     telefone: new FormControl('', [Validators.required]),
     avatar: new FormControl('', [Validators.required], this.validaImagem.bind(this))
   })
+  mensagemErro = ''
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -42,8 +47,11 @@ export class CadastroComponent implements OnInit {
         resp => {
           console.log(resp);
           this.formCadastro.reset()
+          this.router.navigate([''])
         },
-        error => console.error(error)
+        (responseError: HttpErrorResponse) => {
+          this.mensagemErro = responseError.error.body;
+        }
       )
     } else {
       this.validarTodosOsCamposDoFormulario()

@@ -33,6 +33,12 @@
             <span class="mdl-textfield__error mdl-textfield__valid" *ngIf="formCadastro.get('avatar').status === 'VALID'">URL válida</span>
           </cmail-form-group>
 
+          {{mensagemErro | json}}
+          <ul *ngIf="mensagemErro" class="mdl-textfield is-invalid">
+            <li *ngFor="let erro of mensagemErro" class="mdl-textfield__error">
+              {{erro.message}}: {{erro.value}}
+            </li>
+          </ul>
           <div class="mdl-card__actions">
             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
               Cadastrar
