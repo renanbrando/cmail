@@ -6,9 +6,10 @@
     <div class="page-content">
 
       <div class="mdl-grid">
-        <ul>
-          <li *ngFor="let email of emailList">{{ email.assunto }}</li>
-        </ul>
+        <!--<ul>
+          <li *ngFor="let email of emailList">{{ email.content }}</li>
+        </ul>-->
+        <cmail-emails-list [list]="emailList"></cmail-emails-list>
         <!-- Floating Multiline Textfield -->
         <button class="globalFab tooltip btn mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
           role="tooltip" aria-label="Criar novo email" (click)="toggleEmail()">

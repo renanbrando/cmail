@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { EmailService } from 'src/app/services/email.service';
 
 @Component({
   selector: 'app-caixa-de-entrada',
@@ -7,24 +8,33 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./caixa-de-entrada.component.css']
 })
 
-export class CaixaDeEntradaComponent {
+export class CaixaDeEntradaComponent implements OnInit{
   title: String;
   private _isNewEmailOpen: Boolean;
   get isNewEmailOpen() {
     return this._isNewEmailOpen
   }
   emailList: Array < Object > ;
-  email: Object;
+  // email: Object;
+  email = {
+    para: '',
+    assunto: '',
+    conteudo: ''
+  }
 
-  constructor() {
+  constructor(private emailService: EmailService) {
     this.title = 'Titulo da sua página atual';
     this._isNewEmailOpen = false;
-    this.email = {
-      para: '',
-      assunto: '',
-      conteudo: ''
-    }
     this.emailList = []
+  }
+
+  ngOnInit() {
+    this.emailService.list()
+    .subscribe((response: any) => {
+      // event.preventDefault()
+      console.log(response);
+      this.emailList = response
+    }, (error) => console.log(error));
   }
 
   toggleEmail() {
@@ -40,19 +50,23 @@ export class CaixaDeEntradaComponent {
     console.log(form);
 
     if (form.invalid) return;
-    console.log(this.email);
 
-    // event.preventDefault()
-    this.emailList.push(this.email)
+    this.emailService.send(this.email)
+      .subscribe((response: any) => {
+        // event.preventDefault()
+        console.log(response);
+        this.emailList.push(response)
 
-    this.email = {
-      para: '',
-      assunto: '',
-      conteudo: ''
-    };
+        this.email = {
+          para: '',
+          assunto: '',
+          conteudo: ''
+        };
 
-    form.reset();
-    this.toggleEmail()
+        form.reset();
+        this.toggleEmail()
+      }, (error) => console.log(error));
+    
   }
 
 }

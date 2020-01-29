@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { FormGroupComponent } from './form-group/form-group.component';
 import { FormFieldDirective } from './form-group/form-field.directive';
 import { RouterModule } from '@angular/router';
+import { EmailsListComponent } from './emails-list/emails-list.component';
 
 
 
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     HeaderComponent,
     FormGroupComponent,
-    FormFieldDirective
+    FormFieldDirective,
+    EmailsListComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { RouterModule } from '@angular/router';
   exports: [
     HeaderComponent,
     FormGroupComponent,
-    FormFieldDirective
+    FormFieldDirective,
+    EmailsListComponent
   ]
 })
 export class SharedModule { }
