@@ -69,4 +69,14 @@ export class CaixaDeEntradaComponent implements OnInit{
     
   }
 
+  handleDeleteEmail(id){
+    console.log(id)
+    this.emailService.delete(id).subscribe(
+      (res) => {
+        this.emailList = this.emailList.filter((email: any) => email.id !== id)
+      },
+      (error) => console.log(error)
+    )
+  }
+
 }

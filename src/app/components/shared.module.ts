@@ -5,6 +5,7 @@ import { FormGroupComponent } from './form-group/form-group.component';
 import { FormFieldDirective } from './form-group/form-field.directive';
 import { RouterModule } from '@angular/router';
 import { EmailsListComponent } from './emails-list/emails-list.component';
+import { DetalheEmailComponent } from './modules/detalhe-email/detalhe-email.component';
 
 
 
@@ -13,7 +14,8 @@ import { EmailsListComponent } from './emails-list/emails-list.component';
     HeaderComponent,
     FormGroupComponent,
     FormFieldDirective,
-    EmailsListComponent
+    EmailsListComponent,
+    DetalheEmailComponent
   ],
   imports: [
     CommonModule,

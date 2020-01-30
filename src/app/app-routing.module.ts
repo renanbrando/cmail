@@ -21,6 +21,12 @@ const rotas: Routes = [
       .then(m => m.CaixaDeEntradaModule)
   },
   {
+    path: 'inbox/:id',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./components/modules/detalhe-email/detalhe-email.module')
+      .then(m => m.DetalheEmailModule)
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
