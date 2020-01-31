@@ -31,6 +31,10 @@ export class EmailService {
     })
   }
 
+  get(id) {
+    return this.httpClient.get(`${this.api}/${id}`, { headers: this.headers });
+  }
+
   delete(id) {
     return this.httpClient.delete(`${this.api}/${id}`, { headers: this.headers });
   }

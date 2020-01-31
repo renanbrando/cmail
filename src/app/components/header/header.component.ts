@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { PageService } from 'src/app/services/page.service';
+import { HeaderService } from 'src/app/services/header.service';
 
 @Component({
     selector: 'cmail-header',
@@ -8,12 +10,18 @@ import { Component } from "@angular/core";
 
 export class HeaderComponent {
     isMenuOpen: Boolean
+    title = 'Cmail'
 
-    constructor (){
+    constructor (private pageService: PageService, private headerService: HeaderService){
         this.isMenuOpen = false
+        this.pageService.title.subscribe(newTitle => this.title = newTitle)
     }
 
     toggleMenu () {
         this.isMenuOpen = !this.isMenuOpen
+    }
+
+    handleInput({target}) {
+        this.headerService.updateFilterValue(target.value)
     }
 }

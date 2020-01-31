@@ -5,7 +5,7 @@
   <main class="mdl-layout__content">
     <div class="page-content">
       <div class="mdl-grid">
-        <cmail-emails-list [list]="emailList" (delete)="handleDeleteEmail($event)" style="width: 100%;"></cmail-emails-list>
+        <cmail-emails-list [list]="emailList | assunto:filterTerm" (delete)="handleDeleteEmail($event)" style="width: 100%;"></cmail-emails-list>
         <!--<ul>
           <li *ngFor="let email of emailList">{{ email.content }}</li>
         </ul>-->

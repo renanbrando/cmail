@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { PageService } from 'src/app/services/page.service';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,9 @@ export class LoginComponent implements OnInit {
   login: Login
   mensagemErro: ''
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router, private pageService: PageService) {
     this.login = new Login({ email: '', password: ''})
+    this.pageService.getTitle('Caixa de Entrada')
    }
 
   ngOnInit() {

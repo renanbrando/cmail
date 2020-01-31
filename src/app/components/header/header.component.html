@@ -5,7 +5,7 @@
 
   <div class="mdl-layout__header-row">
     <span class="headerGlobal__title mdl-layout-title">
-        <ng-content></ng-content>
+        <span>{{title}}</span>
     </span>
 
     <div class="mdl-layout-spacer"></div>
@@ -18,7 +18,12 @@
         <span class="material-icons">search</span>
       </label>
       <div class="mdl-textfield__expandable-holder">
-        <input class="headerSearch__input mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp"
+        <input
+          class="headerSearch__input mdl-textfield__input"
+          type="text"
+          name="sample"
+          id="fixed-header-drawer-exp"
+          (input)="handleInput($event)"
           placeholder="Filtrar e-mails...">
       </div>
     </div>

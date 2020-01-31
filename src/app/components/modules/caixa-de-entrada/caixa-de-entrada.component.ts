@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmailService } from 'src/app/services/email.service';
+import { PageService } from 'src/app/services/page.service';
+import { HeaderService } from 'src/app/services/header.service';
 
 @Component({
   selector: 'app-caixa-de-entrada',
@@ -22,10 +24,18 @@ export class CaixaDeEntradaComponent implements OnInit{
     conteudo: ''
   }
 
-  constructor(private emailService: EmailService) {
+  filterTerm = ''
+
+  constructor(
+    private emailService: EmailService,
+    private pageService: PageService,
+    private headerService: HeaderService
+    ) {
     this.title = 'Titulo da sua página atual';
     this._isNewEmailOpen = false;
     this.emailList = []
+
+    this.pageService.getTitle('Caixa de Entrada')
   }
 
   ngOnInit() {
@@ -35,6 +45,9 @@ export class CaixaDeEntradaComponent implements OnInit{
       console.log(response);
       this.emailList = response
     }, (error) => console.log(error));
+
+    this.headerService.filterValue.subscribe(newValue => this.filterTerm = newValue)
+
   }
 
   toggleEmail() {

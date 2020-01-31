@@ -4,6 +4,7 @@ import { HttpClient, HttpResponseBase, HttpErrorResponse,  } from '@angular/comm
 import { map, catchError } from 'rxjs/operators';
 import { User } from 'src/app/models/user'
 import { Router } from '@angular/router';
+import { PageService } from 'src/app/services/page.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -24,8 +25,11 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router
-  ) { }
+    private router: Router,
+    private pageService: PageService
+  ) {
+    this.pageService.getTitle('Caixa de Entrada')
+   }
 
   ngOnInit() {
   }
