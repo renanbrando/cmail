@@ -92,4 +92,14 @@ export class CaixaDeEntradaComponent implements OnInit{
     )
   }
 
+  filterEmails() {
+    const term = this.filterTerm.toLowerCase();
+    if (term && term.trim()) {
+      return this.emailList.filter((email: any) => {
+        return email.content.toLowerCase().includes(term.toLowerCase()) || email.subject.toLowerCase().includes(term.toLowerCase());
+      })
+    }
+    return this.emailList
+  }
+
 }
