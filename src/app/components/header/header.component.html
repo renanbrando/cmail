@@ -36,10 +36,10 @@
   </span>
 
   <header class="headerGlobal__userInfo">
-    <img src="http://placehold.it/48x48" class="headerGlobal__userInfoAvatar">
+    <img [src]="user.avatarUrl" class="headerGlobal__userInfoAvatar">
     <div class="headerGlobal__userInfoData">
-      <h5 class="headerGlobal__userInfoDataName">Pessoa de Tal</h5>
-      <span>pesso.al@cmail.br</span>
+      <h5 class="headerGlobal__userInfoDataName">{{ user.name }}</h5>
+      <span>{{user.email}}</span>
       <div class="mdl-layout-spacer"></div>
     </div>
   </header>
@@ -54,7 +54,7 @@
     <a class="mdl-navigation__link" routerLink="/inbox" routerLinkActive="mdl-navigation__link--current">
       <span class="material-icons">inbox</span> Caixa de Entrada
     </a>
-    <a class="mdl-navigation__link">
+    <a class="mdl-navigation__link" (click)="handleLogout()">
       <span class="material-icons">logout</span> Logout
     </a>
   </nav>

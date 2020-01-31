@@ -21,7 +21,7 @@ export class DetalheEmailComponent implements OnInit {
   constructor(private emailService: EmailService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.emailService.get(this.route.snapshot.params['id']).subscribe(res => {
+    this.emailService.get(this.route.snapshot.params['id']).subscribe((res: any) => {
       this.email = res
       console.log(res)
     }, error => console.log(error))

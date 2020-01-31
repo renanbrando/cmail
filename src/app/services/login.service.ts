@@ -17,6 +17,11 @@ export class LoginService {
       .pipe(
         map((response: any) => {
           localStorage.setItem('cmail-token', response.token)
+          localStorage.setItem('user', JSON.stringify({
+            avatarUrl: response.avatarUrl,
+            name: response.name,
+            email: response.email
+          }))
         })
       )
   }

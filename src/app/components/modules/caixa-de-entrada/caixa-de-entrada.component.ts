@@ -59,10 +59,10 @@ export class CaixaDeEntradaComponent implements OnInit{
     console.log(this.email);
   }
 
-  handleEmail(form: NgForm) {
-    console.log(form);
+  handleEmail(formulario: NgForm) {
+    console.log(formulario);
 
-    if (form.invalid) return;
+    if (formulario.invalid) return;
 
     this.emailService.send(this.email)
       .subscribe((response: any) => {
@@ -76,7 +76,7 @@ export class CaixaDeEntradaComponent implements OnInit{
           conteudo: ''
         };
 
-        form.reset();
+        formulario.reset();
         this.toggleEmail()
       }, (error) => console.log(error));
     
